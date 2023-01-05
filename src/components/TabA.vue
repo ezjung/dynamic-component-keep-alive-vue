@@ -1,7 +1,19 @@
 <script setup>
-import { ref, reactive, onMounted, watchEffect } from "vue"
+import { ref, reactive, onMounted, onActivated, onDeactivated } from "vue"
 
 const name = ref('')
+
+onMounted(() => {
+  console.log('A is mounted')
+})
+
+onActivated(() => {
+  console.log('A is activated')
+})
+
+onDeactivated(() => {
+  console.log('A is deactivated')
+})
 
 </script>
 
