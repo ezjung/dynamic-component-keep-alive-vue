@@ -5,11 +5,15 @@ import TabA from './components/TabA.vue'
 import TabB from './components/TabB.vue'
 import TabC from './components/TabC.vue'
 
-const activeTab = ref('TabA')
+const currentTab = ref('TabA')
 
-const handleActiveTab = (tab) => {
+// create an object key (doesn't need to be a ref)
+const components = { TabA, TabB, TabC }
 
-  activeTab.value = tab
+const switchTabs = (tab) => {
+
+  currentTab.value = tab
+
 }
 
 
@@ -18,17 +22,16 @@ const handleActiveTab = (tab) => {
 
 <template>
   <div>
-    <button @click="handleActiveTab('TabA')">TabA</button>
-    <button @click="handleActiveTab('TabB')">TabB</button>
-    <button @click="handleActiveTab('TabC')">TabC</button>
+    <button @click="switchTabs('TabA')">TabA</button>
+    <button @click="switchTabs('TabB')">TabB</button>
+    <button @click="switchTabs('TabC')">TabC</button>
   </div>
 
   <br>
 
   <div>
-    <TabA v-if="activeTab==='TabA'" />
-    <TabB v-if="activeTab==='TabB'" />
-    <TabC v-if="activeTab==='TabC'" />
+
+    <component :is="components[currentTab]" />
 
   </div>
 
