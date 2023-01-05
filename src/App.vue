@@ -31,7 +31,10 @@ const switchTabs = (tab) => {
 
   <div>
 
-    <component :is="components[currentTab]" />
+    <keep-alive>
+      <component :is="components[currentTab]" />
+    </keep-alive>
+
 
   </div>
 
